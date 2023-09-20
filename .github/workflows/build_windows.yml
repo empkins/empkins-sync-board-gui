@@ -31,7 +31,7 @@ jobs:
     - name: Create executable
       run: |
         pip install pyinstaller 
-        pyinstaller start_gui.spec --onefile
+        pyinstaller start_gui.spec
         ls dist
         pwd
         
