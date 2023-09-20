@@ -1,0 +1,42 @@
+# This workflows will create a standalone executable for windows.
+
+name: Create Standalone (Windows)
+
+on:
+  release:
+    types: [created]
+  push:
+    branches:
+    - main
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install poetry
+        poetry config virtualenvs.in-project true
+        poetry install
+
+    - name: Create executable
+      run: |
+        pip install pyinstaller 
+        pyinstaller start_gui.spec --onefile
+        ls dist
+        pwd
+        
+    - uses: actions/upload-artifact@v3
+      with:
+        name: windows_executable
+        path: D:\a\empkins-sync-board-gui\empkins_sync_board_gui\dist\
+        
