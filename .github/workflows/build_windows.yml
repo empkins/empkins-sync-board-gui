@@ -5,9 +5,6 @@ name: Create Standalone (Windows)
 on:
   release:
     types: [created]
-  push:
-    branches:
-    - main
   workflow_dispatch:
 
 jobs:
