@@ -1,15 +1,13 @@
 # EmpkinS Sync Board GUI
 
 [![PyPI](https://img.shields.io/pypi/v/empkins-sync-board-gui)](https://pypi.org/project/empkins-sync-board-gui/)
-![GitHub](https://img.shields.io/github/license/)
-<!---[![Test and Lint](https://github.com/mad-lab-fau/carwatch/actions/workflows/test-and-lint.yml/badge.svg)](https://github.com/mad-lab-fau/carwatch/actions/workflows/test-and-lint.yml)-->
+![GitHub](https://img.shields.io/github/license/empkins/empkins-sync-board-gui)
+[![Linting](https://github.com/empkins/empkins-sync-board-gui/actions/workflows/lint.yml/badge.svg)](https://github.com/empkins/empkins-sync-board-gui/actions/workflows/lint.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-<!---![PyPI - Downloads](https://img.shields.io/pypi/dm/empkins-sync-board-gui)-->
-<!---![GitHub commit activity](https://img.shields.io/github/commit-activity/m/mad-lab-fau/carwatch)-->
 
 ## Description
 
-This Repository is part of the [EmpkinS Sync Board](TODO:link to main repo) project. The EmpkinS Sync Board (ESB) can be used
+This Repository is part of the [EmpkinS Sync Board](https://github.com/empkins/empkins-sync-board) project. The EmpkinS Sync Board (ESB) can be used
 to **precisely synchronize different measurement modalities** on hardware level.
 The accompanying **Graphical User Interface (GUI)** allows to easily adjust the outputs
 of the ESB with the required synchronization signals for the connected modalities, and is also **suited for non-technical users**.
@@ -24,13 +22,9 @@ The main UI window resembles the layout of the ESB, and thus enables an intuitiv
 - Log status changes and external events, e.g. button press
 - Export current configuration to easily restore them for the next measurement session
 
-If you are facing any unexpected issues, please feel free
-to [Report an issue here!](https://github.com/.../issues/new?assignees=&labels=&template=&title=)
-
 ## Installation
 
-To use the GUI **out-of-the-box** without any adaptations, you can download the **standalone executable** for your
-operating system from the [releases page]().
+To use the GUI **out-of-the-box** without any adaptations, you can download the **standalone executable** for Windows from the [releases page]().
 If you are comfortable with python/pip, or if you are a linux user, please install the package **via pip**:
 
 ```bash
@@ -118,7 +112,7 @@ a virtual environment, and install all development dependencies:
 With ssh access:
 
 ```bash
-git clone git@gitlab.rrze.fau.de:empkins/empkins-sync-board/empkins-sync-board-gui.git
+git clone git@github.com:empkins/empkins-sync-board-gui.git
 cd empkins-sync-board-gui
 poetry install
 ```
@@ -126,7 +120,7 @@ poetry install
 With https access:
 
 ```bash
-git clone https://gitlab.rrze.fau.de/empkins/empkins-sync-board/empkins-sync-board-gui.git
+git clone https://github.com/empkins/empkins-sync-board-gui.git
 cd empkins-sync-board-gui
 poetry install
 ```
