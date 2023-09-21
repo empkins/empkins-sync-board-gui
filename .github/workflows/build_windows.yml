@@ -4,7 +4,7 @@ name: Create Standalone (Windows)
 
 on:
   release:
-    types: [created]
+    types: [published]
   workflow_dispatch:
 
 jobs:
@@ -29,8 +29,6 @@ jobs:
       run: |
         pip install pyinstaller 
         pyinstaller start_gui.spec
-        ls dist
-        pwd
         
     - uses: actions/upload-artifact@v3
       with:
