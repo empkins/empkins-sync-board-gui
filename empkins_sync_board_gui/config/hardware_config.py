@@ -1,7 +1,21 @@
 """module loading hardware-version specific configuration."""
 
+import sys
 from configparser import ConfigParser
 from pathlib import Path
+
+
+def resolve_path(path):
+    """Resolve the given path to the correct absolute path.
+
+    Based on whether the application is frozen (bundled as an executable file) or not.
+    """
+    if getattr(sys, "frozen", False):
+        resolved_path = Path.resolve(Path(sys._MEIPASS).joinpath(path))
+    else:
+        resolved_path = Path.resolve(Path.cwd().joinpath(path))
+    return resolved_path
+
 
 from empkins_sync_board_gui.constants import (
     BOARD_VERSION_V3,
@@ -50,7 +64,7 @@ class HardwareConfig:
         if self.version not in CONFIG_LOCATIONS.keys():
             raise NotImplementedError(f"There is no software available for version {self.version}!")
 
-        config_path = Path(CONFIG_FILE_PATH).joinpath(CONFIG_LOCATIONS[self.version])
+        config_path = Path(resolve_path(CONFIG_FILE_PATH)).joinpath(CONFIG_LOCATIONS[self.version])
         self.config.read(config_path)
         self.connection_mapping = _convert_to_list(self.config.get(CONNECTION_CONFIG, CONNECTION_MAPPING))
         self.connection_names = _convert_to_list(self.config.get(CONNECTION_CONFIG, CONNECTION_NAMES))

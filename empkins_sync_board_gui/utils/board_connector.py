@@ -13,6 +13,7 @@ from serial import Serial
 from serial.serialutil import SerialException
 
 from empkins_sync_board_gui.config import HardwareConfig
+from empkins_sync_board_gui.config.hardware_config import resolve_path
 from empkins_sync_board_gui.constants import (
     BOARD_ERROR_LIST,
     BOARD_EVENT_LIST,
@@ -25,8 +26,6 @@ from empkins_sync_board_gui.constants import (
     PAYLOAD_TIME,
     PAYLOAD_TYPE,
 )
-
-logging.basicConfig(filename="logs/board_connector.log", level=logging.DEBUG)
 
 
 class SyncBoardMessageSignal(QObject):
@@ -56,19 +55,17 @@ class BoardConnector(QtCore.QThread):
 
     def setup(self, progress: QProgressBar):
         """Initialize the board connector."""
-        logging.debug("Connector setup")
         try:
             self._setup_message_dict()
         except Exception as e:  # noqa: BLE001
             raise BoardConnectionError(
                 f"Reading of message file failed with the following error: {e}. "
-                f"Make sure a file {Path(MESSAGE_FILE_PATH[self.config.version]).absolute()} exists!"
+                f"Make sure a file {Path(resolve_path(MESSAGE_FILE_PATH[self.config.version])).absolute()} exists!"
             ) from e
         if not self._mock:
             try:
                 self._port = self._get_port_from_list(BoardConnector._get_port_list(), progress)
                 self._ser = Serial(self._port, timeout=self._timeout)
-                logging.debug(f"Serial openend: {self._ser}")
             except (OSError, SerialException) as e:
                 raise BoardConnectionError("No suitable device found!") from e
         else:
@@ -76,7 +73,7 @@ class BoardConnector(QtCore.QThread):
 
     def _setup_message_dict(self):
         try:
-            with Path.open(Path(MESSAGE_FILE_PATH[self.config.version])) as fp:
+            with Path.open(Path(resolve_path(MESSAGE_FILE_PATH[self.config.version]))) as fp:
                 self.message_dict = json.load(fp)
         except Exception:
             raise
@@ -96,13 +93,10 @@ class BoardConnector(QtCore.QThread):
                 time.sleep(20)
                 """
             else:
-                logging.debug("Waiting for board messages")
                 out = self._ser.read(self.config.message_size)
-                logging.debug(f"Board message received: {out}")
                 self._read_data(out)
 
             if self.isInterruptionRequested():
-                logging.debug("Connector thread received interruption request")
                 return
 
     def _read_data(self, out: bytearray):
@@ -112,7 +106,6 @@ class BoardConnector(QtCore.QThread):
             elif out[1] == self.message_dict[MESSAGE_EVENT] or out[1] == self.message_dict[MESSAGE_STATUS]:
                 self._handle_event_message(out[2])
             else:
-                logging.debug(f"Unknown message type {out[1]}")
                 self.error_signal.sig.emit(self.message_dict[BOARD_ERROR_LIST][0])
 
     def _handle_error_message(self, error_type: int):
@@ -120,7 +113,6 @@ class BoardConnector(QtCore.QThread):
             payload = self._create_signal_payload(self.message_dict[BOARD_ERROR_LIST][error_type], time.time())
             self.error_signal.sig.emit(payload)
         else:
-            logging.debug(f"Unknown error type {error_type}")
             payload = self._create_signal_payload(self.message_dict[BOARD_ERROR_LIST][0], time.time())
             self.error_signal.sig.emit(payload)
 
@@ -132,7 +124,6 @@ class BoardConnector(QtCore.QThread):
             payload = self._create_signal_payload(self.message_dict[f"{event_type:02}"], time.time())
             self.event_signal.sig.emit(payload)
         else:
-            logging.debug(f"Unknown event type {event_type}")
             self.error_signal.sig.emit(self.message_dict[BOARD_ERROR_LIST][0])
 
     @staticmethod
@@ -151,11 +142,9 @@ class BoardConnector(QtCore.QThread):
             ports = glob.glob("/dev/tty[A-Za-z]*")
         else:
             raise BoardConnectionError(f"Sorry, your OS {sys.platform} is currently not supported!")
-        logging.debug(f"Port list: {ports}")
         return ports
 
     def _get_port_from_list(self, port_list: List[str], progress: QProgressBar) -> str:
-        logging.debug("retrieving port from port list")
         for i, port in enumerate(port_list):
             progress.setValue(int(i / len(port_list) * 100))
             # needs to be called manually after every progress update bc. main event loop is blocked
@@ -163,27 +152,21 @@ class BoardConnector(QtCore.QThread):
             try:
                 ser = Serial(port, timeout=1)
             except SerialException:
-                logging.debug(f"No permission for {port}")
                 # when logged-in user does not have the permission to read/write for this port
                 continue
             packet = self.HELLO_REQUEST  # whoami message
             ser.write(packet)
-            logging.debug("Hello was sent")
             resp = ser.read(self.HELLO_LENGTH)  # expecting "\xaa\xaa" as response
-            logging.debug("Reading was finished")
             if resp == self.HELLO_RESPONSE:
-                logging.debug(f"Correct port found: {port}")
                 progress.setValue(100)
                 QApplication.processEvents()
                 return port
-        logging.debug("No port found")
         progress.setValue(100)
         QApplication.processEvents()
         raise BoardConnectionError("No port seems to be connected to SyncBoard!")
 
     def send_command(self, cmd: bytes):
         """Send a command to the board."""
-        logging.debug(f"Sending: {cmd}")
         print(f"Sending: {cmd}")
         if not self._mock:
             self._ser.flush()

@@ -18,7 +18,7 @@ from PySide2.QtWidgets import (
 )
 
 from empkins_sync_board_gui.components import Ui_MainWindowV3
-from empkins_sync_board_gui.config.hardware_config import HardwareConfig
+from empkins_sync_board_gui.config.hardware_config import HardwareConfig, resolve_path
 from empkins_sync_board_gui.constants import (
     ACTIVE_CONNECTION_COLOR,
     BOARD_VERSION_V3,
@@ -120,7 +120,7 @@ class MainWindow(QWidget):
             msg.setWindowTitle("Setup error")
             msg.setText(
                 f"Reading of command file failed with the following error: {e}. "
-                f"Make sure a file {Path(COMMAND_FILE_PATH[self.hw_config.version]).absolute()} exists!"
+                f"Make sure a file {Path(resolve_path(COMMAND_FILE_PATH[self.hw_config.version])).absolute()} exists!"
             )
             msg.setIcon(QMessageBox.Warning)
             ret = msg.exec_()

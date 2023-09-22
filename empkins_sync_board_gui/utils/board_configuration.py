@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple, Union
 
-from empkins_sync_board_gui.config.hardware_config import HardwareConfig
+from empkins_sync_board_gui.config.hardware_config import HardwareConfig, resolve_path
 from empkins_sync_board_gui.constants import (
     COMMAND_FILE_PATH,
     DEFAULT_DEGREE,
@@ -48,7 +48,7 @@ class BoardConfig:
     def setup_command_dict(self):
         """Load command dictionary from json file."""
         try:
-            with Path.open(Path(COMMAND_FILE_PATH[self.config.version])) as fp:
+            with Path.open(Path(resolve_path(COMMAND_FILE_PATH[self.config.version]))) as fp:
                 self.command_dict = json.load(fp)
         except Exception:
             raise
