@@ -1,6 +1,5 @@
 """Handles communication with the EmpkinS Sync Board."""
 import json
-import logging
 import sys
 import time
 from pathlib import Path

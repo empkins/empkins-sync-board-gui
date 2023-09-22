@@ -19,7 +19,7 @@ class Ui_EventLogDialog(object):
     def setupUi(self, EventLogDialog):
         if not EventLogDialog.objectName():
             EventLogDialog.setObjectName("EventLogDialog")
-        EventLogDialog.resize(496, 185)
+        EventLogDialog.resize(496, 225)
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -38,6 +38,11 @@ class Ui_EventLogDialog(object):
         self.log_path_label.setWordWrap(True)
 
         self.verticalLayout.addWidget(self.log_path_label)
+
+        self.file_location_label = QLabel(EventLogDialog)
+        self.file_location_label.setObjectName("file_location_label")
+
+        self.verticalLayout.addWidget(self.file_location_label)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -61,6 +66,16 @@ class Ui_EventLogDialog(object):
         self.horizontalLayout.addWidget(self.select_location_button)
 
         self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.file_name_label = QLabel(EventLogDialog)
+        self.file_name_label.setObjectName("file_name_label")
+
+        self.verticalLayout.addWidget(self.file_name_label)
+
+        self.event_file_name = QLineEdit(EventLogDialog)
+        self.event_file_name.setObjectName("event_file_name")
+
+        self.verticalLayout.addWidget(self.event_file_name)
 
         self.buttonBox = QDialogButtonBox(EventLogDialog)
         self.buttonBox.setObjectName("buttonBox")
@@ -122,9 +137,12 @@ class Ui_EventLogDialog(object):
         EventLogDialog.setWindowTitle(QCoreApplication.translate("EventLogDialog", "Set Eventlog Location", None))
         self.log_path_label.setText(
             QCoreApplication.translate(
-                "EventLogDialog", "Welcome!\n" "Please select a location to store the event logs of this session:", None
+                "EventLogDialog",
+                "Welcome!\n" "Please select where you want to store the event logs of this session.",
+                None,
             )
         )
+        self.file_location_label.setText(QCoreApplication.translate("EventLogDialog", "Event File Location:", None))
         # if QT_CONFIG(tooltip)
         self.log_path.setToolTip(
             QCoreApplication.translate(
@@ -142,5 +160,6 @@ class Ui_EventLogDialog(object):
         )
         # endif // QT_CONFIG(tooltip)
         self.select_location_button.setText(QCoreApplication.translate("EventLogDialog", "...", None))
+        self.file_name_label.setText(QCoreApplication.translate("EventLogDialog", "Event File Name:", None))
 
     # retranslateUi

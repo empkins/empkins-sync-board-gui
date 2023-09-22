@@ -4,19 +4,6 @@ import sys
 from configparser import ConfigParser
 from pathlib import Path
 
-
-def resolve_path(path):
-    """Resolve the given path to the correct absolute path.
-
-    Based on whether the application is frozen (bundled as an executable file) or not.
-    """
-    if getattr(sys, "frozen", False):
-        resolved_path = Path.resolve(Path(sys._MEIPASS).joinpath(path))
-    else:
-        resolved_path = Path.resolve(Path.cwd().joinpath(path))
-    return resolved_path
-
-
 from empkins_sync_board_gui.constants import (
     BOARD_VERSION_V3,
     CONFIG_FILE_PATH,
@@ -33,6 +20,18 @@ from empkins_sync_board_gui.constants import (
     START_SOURCE_MAPPING,
     STOP_SOURCE_MAPPING,
 )
+
+
+def resolve_path(path):
+    """Resolve the given path to the correct absolute path.
+
+    Based on whether the application is frozen (bundled as an executable file) or not.
+    """
+    if getattr(sys, "frozen", False):
+        resolved_path = Path.resolve(Path(sys._MEIPASS).joinpath(path))
+    else:
+        resolved_path = Path.resolve(Path.cwd().joinpath(path))
+    return resolved_path
 
 
 def _convert_to_list(to_split: str, to_int: bool = False):

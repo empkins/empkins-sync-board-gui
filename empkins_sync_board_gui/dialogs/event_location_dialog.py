@@ -5,7 +5,7 @@ from pathlib import Path
 from PySide2.QtWidgets import QCompleter, QDialog, QDirModel, QFileDialog, QWidget
 
 from empkins_sync_board_gui.components import Ui_EventLogDialog
-from empkins_sync_board_gui.constants import DEFAULT_EVENT_LOG_PATH, EVENT_LOG_FILE_TYPE, EVENT_LOG_HEADER
+from empkins_sync_board_gui.constants import EVENT_LOG_FILE_TYPE, EVENT_LOG_HEADER
 
 
 class EventLogDialog(QDialog):
@@ -21,10 +21,14 @@ class EventLogDialog(QDialog):
         self.ui.select_location_button.clicked.connect(self.open_log_file_dialog)
         self.ui.log_path.editingFinished.connect(self.validate_input)
         self.ui.log_path.hasAcceptableInput()
+        self.ui.event_file_name.editingFinished.connect(self.validate_input)
         # set event log path
         self.event_log_path = None
+        self.event_log_dir = None
+        self.event_log_filename = None
         self._set_default_path()
-        self.ui.log_path.setText(str(self.event_log_path))
+        self.ui.log_path.setText(str(self.event_log_dir))
+        self.ui.event_file_name.setText(self.event_log_file_name)
         # set line edit options
         config_completer = QCompleter(self)
         config_completer.setModel(QDirModel(config_completer))  # autocomplete path
@@ -36,9 +40,9 @@ class EventLogDialog(QDialog):
         start = datetime.now()
         curr_date = str(datetime.date(start))
         curr_time = str(datetime.time(start)).replace(":", "-")[:8]
-        event_file_name = f"events_{curr_date}_{curr_time}.csv"
-        event_log_dir = Path.cwd().joinpath(Path(DEFAULT_EVENT_LOG_PATH))
-        self.event_log_path = event_log_dir.joinpath(event_file_name)
+        self.event_log_file_name = f"events_{curr_date}_{curr_time}.csv"
+        self.event_log_dir = Path.home()
+        self.event_log_path = self.event_log_dir.joinpath(self.event_log_file_name)
 
     def get_data(self) -> Path:
         """Return the path to the event log file after dialog closes."""
@@ -48,22 +52,26 @@ class EventLogDialog(QDialog):
         """Create event log file."""
         # set paths to line edit value
         self.validate_input()
-        if self.ui.log_path.text():
-            self.event_log_path = Path(self.ui.log_path.text())
+        if self.ui.log_path.text() and self.ui.event_file_name.text():
+            self.event_log_path = Path(self.ui.log_path.text()).joinpath(Path(self.ui.event_file_name.text()))
         with Path.open(self.event_log_path, "w+") as fp:
             fp.write(EVENT_LOG_HEADER)
 
     def is_path_valid(self):
         """Check if the given path is valid."""
-        path = Path(self.ui.log_path.text())
-        return all(
-            [
-                Path.exists(path.parent),
-                Path.is_dir(path.parent),
-                not Path.exists(path),
-                str(path).endswith(EVENT_LOG_FILE_TYPE),
-            ]
-        )
+        event_dir = Path(self.ui.log_path.text())
+        file_name = self.ui.event_file_name.text()
+        path = event_dir.joinpath(file_name)
+        if event_dir and file_name:
+            path = path.with_suffix(EVENT_LOG_FILE_TYPE)
+            return all(
+                [
+                    Path.exists(event_dir),
+                    Path.is_dir(event_dir),
+                    not Path.exists(path),
+                ]
+            )
+        return False
 
     def validate_input(self):
         """Validate the input of the line edit."""
@@ -72,14 +80,12 @@ class EventLogDialog(QDialog):
 
     def open_log_file_dialog(self):
         """Open file dialog to select event log file."""
-        file_name = QFileDialog.getOpenFileName(
+        # only allow directories
+        QFileDialog.getExistingDirectory(
             self,
-            caption="Select board configuration file",
-            dir=DEFAULT_EVENT_LOG_PATH,
-            filter=f"*{EVENT_LOG_FILE_TYPE}-files (*{EVENT_LOG_FILE_TYPE})",
-        )[0]
-        if file_name:
-            self.ui.log_path.setText(file_name)
+            caption="Select directory for event log file",
+            dir=str(Path.home()),
+        )
 
     def closeEvent(self, event):  # noqa: N802
         """Prevent closing the dialog when no valid path was entered."""
