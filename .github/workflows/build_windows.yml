@@ -4,7 +4,7 @@ name: Create Standalone (Windows)
 
 on:
   release:
-    types: [created, edited]
+    types: [published]
 
 jobs:
   build:
@@ -29,10 +29,10 @@ jobs:
         pip install pyinstaller 
         pyinstaller start_gui.spec
         7z a -tzip esb_gui_windows.zip ./dist/start_gui.exe
-        
-    - uses: actions/upload-artifact@v3
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1   
       with:
-        uses: actions/upload-release-asset@v1
         upload_url: ${{ github.event.release.upload_url }}
         asset_path: D:\a\empkins-sync-board-gui\empkins-sync-board-gui\esb_gui_windows.dist
         asset_name: esb_gui_windows.zip
