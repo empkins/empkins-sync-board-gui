@@ -1,0 +1,44 @@
+# This workflows will create a standalone executable for macOS.
+
+name: Create Standalone (macOS)
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install poetry
+        poetry config virtualenvs.in-project true
+        poetry install
+
+    - name: Create executable
+      run: |
+        pip install pyinstaller 
+        pyinstaller start_gui.spec
+        zip esb_gui_macos.zip ./dist/esb_gui_macos
+        pwd
+        ls 
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1   
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: /Users/runner/work/empkins-sync-board-gui/empkins-sync-board-gui/esb_gui_macos.zip
+        asset_name: esb_gui_macos.zip
+        asset_content_type: application/zip
+        
