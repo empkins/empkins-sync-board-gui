@@ -28,9 +28,9 @@ jobs:
       run: |
         pip install pyinstaller 
         pyinstaller start_gui.spec
-        zip esb_gui_macos.zip ./dist/esb_gui_macos
         pwd
         ls 
+        zip esb_gui_macos.zip ./dist/start_gui
 
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1   
