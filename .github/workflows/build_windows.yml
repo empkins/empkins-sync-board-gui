@@ -29,9 +29,14 @@ jobs:
         pip install pyinstaller 
         pyinstaller start_gui.spec
         7z a -tzip esb_gui_windows.zip ./dist/start_gui.exe
+        pwd
+        ls 
+        ls ./dist/
 
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1   
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
         asset_path: D:\a\empkins-sync-board-gui\empkins-sync-board-gui\esb_gui_windows.zip
