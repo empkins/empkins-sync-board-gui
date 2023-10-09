@@ -5,6 +5,9 @@ name: Create Standalone (Windows)
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -21,12 +24,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install poetry
-        poetry config virtualenvs.in-project true
         poetry install
 
     - name: Create executable
       run: |
-        poetry shell
+        .venv/Scripts/activate
         pip install pyinstaller 
         pyinstaller start_gui.spec
         7z a -tzip esb_gui_windows.zip ./dist/start_gui.exe
