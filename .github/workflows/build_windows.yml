@@ -26,6 +26,7 @@ jobs:
 
     - name: Create executable
       run: |
+        poetry shell
         pip install pyinstaller 
         pyinstaller start_gui.spec
         7z a -tzip esb_gui_windows.zip ./dist/start_gui.exe
