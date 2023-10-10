@@ -174,7 +174,7 @@ following keys:
 | "pulse_length" | Integer | - [ ]    | pulse length value in ms | For Trigger Signals: length of the trigger signal |
 | "freq"         | Integer | - [ ]    | frequency value in Hz | For clock & M-Sequence synchronization: desired frequency |
 | "stop_trigger" | Boolean | - [ ]    | `False` <br> `True`                                                                                                                                | For trigger synchronization |
-| "degree"       | Boolean | - [ ]    | degree of M-Sequence | For M-Sequence synchronization: degree of M-Sequence |
+| "degree"       | Integer | - [ ]    | degree of M-Sequence | For M-Sequence synchronization: degree of M-Sequence |
 
 The keys marked as required must be specified for every default device. Remaining keys are optional and can be added if
 required. Note that some keys are only relevant for specific synchronization signals. For example, the `freq` key is
