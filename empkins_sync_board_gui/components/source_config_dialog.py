@@ -40,7 +40,7 @@ class Ui_SourceConfigDialog(object):
         self.sync_signal.addItem("")
         self.sync_signal.setObjectName("sync_signal")
         self.sync_signal.setGeometry(QRect(170, 70, 161, 32))
-        self.sync_signal.setStyleSheet("background-color: rgb(255, 255, 255);\n" "selection-color: rgb(121, 195, 169);")
+        self.sync_signal.setStyleSheet("")
 
         self.retranslateUi(SourceConfigDialog)
         self.buttonBox.accepted.connect(SourceConfigDialog.accept)

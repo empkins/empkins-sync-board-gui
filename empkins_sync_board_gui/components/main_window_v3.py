@@ -29,31 +29,31 @@ class Ui_MainWindowV3(object):
         self.md1_button = QToolButton(MainWindowV3)
         self.md1_button.setObjectName("md1_button")
         self.md1_button.setGeometry(QRect(250, 108, 156, 181))
-        self.md1_button.setStyleSheet("background-color: rgb(251, 217, 221)")
+        self.md1_button.setStyleSheet("background-color: rgb(251, 217, 221);\n" "color: rgb(0, 0, 0);")
         self.md2_button = QToolButton(MainWindowV3)
         self.md2_button.setObjectName("md2_button")
         self.md2_button.setGeometry(QRect(432, 46, 181, 155))
-        self.md2_button.setStyleSheet("background-color: rgb(251, 217, 221)")
+        self.md2_button.setStyleSheet("background-color: rgb(251, 217, 221);\n" "color: rgb(0, 0, 0);")
         self.md3_button = QToolButton(MainWindowV3)
         self.md3_button.setObjectName("md3_button")
         self.md3_button.setGeometry(QRect(643, 108, 156, 181))
-        self.md3_button.setStyleSheet("background-color: rgb(251, 217, 221)")
+        self.md3_button.setStyleSheet("background-color: rgb(251, 217, 221);\n" "color: rgb(0, 0, 0);")
         self.md4_button = QToolButton(MainWindowV3)
         self.md4_button.setObjectName("md4_button")
         self.md4_button.setGeometry(QRect(643, 300, 156, 181))
-        self.md4_button.setStyleSheet("background-color: rgb(251, 217, 221)")
+        self.md4_button.setStyleSheet("background-color: rgb(251, 217, 221);\n" "color: rgb(0, 0, 0);")
         self.md7_button = QToolButton(MainWindowV3)
         self.md7_button.setObjectName("md7_button")
         self.md7_button.setGeometry(QRect(250, 300, 156, 181))
-        self.md7_button.setStyleSheet("background-color: rgb(251, 217, 221)")
+        self.md7_button.setStyleSheet("background-color: rgb(251, 217, 221);\n" "color: rgb(0, 0, 0);")
         self.md6_button = QToolButton(MainWindowV3)
         self.md6_button.setObjectName("md6_button")
         self.md6_button.setGeometry(QRect(250, 492, 156, 181))
-        self.md6_button.setStyleSheet("background-color: rgb(251, 217, 221)")
+        self.md6_button.setStyleSheet("background-color: rgb(251, 217, 221);\n" "color: rgb(0, 0, 0);")
         self.md5_button = QToolButton(MainWindowV3)
         self.md5_button.setObjectName("md5_button")
         self.md5_button.setGeometry(QRect(643, 492, 156, 181))
-        self.md5_button.setStyleSheet("background-color: rgb(251, 217, 221)")
+        self.md5_button.setStyleSheet("background-color: rgb(251, 217, 221);\n" "color: rgb(0, 0, 0);")
         self.md1_settings = QToolButton(MainWindowV3)
         self.md1_settings.setObjectName("md1_settings")
         self.md1_settings.setGeometry(QRect(307, 222, 41, 41))
@@ -104,6 +104,7 @@ class Ui_MainWindowV3(object):
         font.setBold(True)
         font.setWeight(75)
         self.start_source_label_text.setFont(font)
+        self.start_source_label_text.setStyleSheet("color: rgb(0, 0, 0);")
         self.start_source_label_text.setScaledContents(True)
 
         self.gridLayout.addWidget(self.start_source_label_text, 3, 1, 1, 1)
@@ -144,9 +145,7 @@ class Ui_MainWindowV3(object):
         font1.setBold(False)
         font1.setWeight(50)
         self.stop_source.setFont(font1)
-        self.stop_source.setStyleSheet(
-            "selection-background-color: rgba(185, 212, 125, 100);\n" "selection-color:rgb(0, 0, 0);"
-        )
+        self.stop_source.setStyleSheet("selection-color:rgb(0, 0, 0);\n" "color: rgb(0, 0, 0);")
 
         self.gridLayout.addWidget(self.stop_source, 3, 15, 1, 1)
 
@@ -180,9 +179,7 @@ class Ui_MainWindowV3(object):
         self.start_source.addItem("")
         self.start_source.setObjectName("start_source")
         self.start_source.setFont(font1)
-        self.start_source.setStyleSheet(
-            "selection-background-color: rgba(185, 212, 125, 100);\n" "selection-color:rgb(0, 0, 0);"
-        )
+        self.start_source.setStyleSheet("selection-color:rgb(0, 0, 0);\n" "color: rgb(0, 0, 0);")
 
         self.gridLayout.addWidget(self.start_source, 3, 4, 1, 1)
 
@@ -196,6 +193,7 @@ class Ui_MainWindowV3(object):
         self.stop_source_label_text = QLabel(self.layoutWidget)
         self.stop_source_label_text.setObjectName("stop_source_label_text")
         self.stop_source_label_text.setFont(font)
+        self.stop_source_label_text.setStyleSheet("color: rgb(0, 0, 0);")
         self.stop_source_label_text.setScaledContents(True)
 
         self.gridLayout.addWidget(self.stop_source_label_text, 3, 12, 1, 1)

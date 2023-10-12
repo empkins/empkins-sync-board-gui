@@ -84,8 +84,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);
-selection-color: rgb(121, 195, 169);</string>
+    <string notr="true"/>
    </property>
    <item>
     <property name="text">

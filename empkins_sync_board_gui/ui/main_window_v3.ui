@@ -46,7 +46,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(251, 217, 221)</string>
+    <string notr="true">background-color: rgb(251, 217, 221);
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>MD1</string>
@@ -62,7 +63,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(251, 217, 221)</string>
+    <string notr="true">background-color: rgb(251, 217, 221);
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>MD2</string>
@@ -78,7 +80,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(251, 217, 221)</string>
+    <string notr="true">background-color: rgb(251, 217, 221);
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>MD3</string>
@@ -94,7 +97,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(251, 217, 221)</string>
+    <string notr="true">background-color: rgb(251, 217, 221);
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>MD4</string>
@@ -110,7 +114,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(251, 217, 221)</string>
+    <string notr="true">background-color: rgb(251, 217, 221);
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>MD7</string>
@@ -126,7 +131,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(251, 217, 221)</string>
+    <string notr="true">background-color: rgb(251, 217, 221);
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>MD6</string>
@@ -142,7 +148,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(251, 217, 221)</string>
+    <string notr="true">background-color: rgb(251, 217, 221);
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>MD5</string>
@@ -328,6 +335,9 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
       <property name="text">
        <string>Start Source:</string>
       </property>
@@ -402,8 +412,8 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Configure how measurement will be stopped&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">selection-background-color: rgba(185, 212, 125, 100);
-selection-color:rgb(0, 0, 0);</string>
+       <string notr="true">selection-color:rgb(0, 0, 0);
+color: rgb(0, 0, 0);</string>
       </property>
       <item>
        <property name="text">
@@ -491,8 +501,8 @@ selection-color:rgb(0, 0, 0);</string>
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Configure how measurement will be started&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">selection-background-color: rgba(185, 212, 125, 100);
-selection-color:rgb(0, 0, 0);</string>
+       <string notr="true">selection-color:rgb(0, 0, 0);
+color: rgb(0, 0, 0);</string>
       </property>
       <item>
        <property name="text">
@@ -542,6 +552,9 @@ selection-color:rgb(0, 0, 0);</string>
         <weight>75</weight>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
       </property>
       <property name="text">
        <string>Stop Source:</string>
