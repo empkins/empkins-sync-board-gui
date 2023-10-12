@@ -2,9 +2,28 @@
 
 from empkins_sync_board_gui.constants import LOGIC_LEVEL_18, LOGIC_LEVEL_33, LOGIC_LEVEL_50
 
-DEFAULT_DEVICES = ["Azure Kinect", "Intel RealSense", "Qualisys", "OptiTrack", "NilsPod"]
+DEFAULT_DEVICES = [
+    "Biopac", "Somnomedics PSG", "Azure Kinect", "Intel RealSense", "Qualisys", "OptiTrack", "NilsPod", "XSens"
+]
+
 # indices of sync_signal property refer to sync signals specified in `board_constants.SYNC_SIGNAL_MAPPING_OUTPUT`
 DEVICE_SETTINGS = {
+    "Biopac": {
+        "sync_signal": 0,
+        "freq": 0,
+        "pulse_length": 4,
+        "logic_level": LOGIC_LEVEL_50,
+        "stop_trigger": False,
+        "plug": "Screw Terminal",
+    },
+    "Somnomedics PSG": {
+        "sync_signal": 6,
+        "freq": 250,
+        "logic_level": LOGIC_LEVEL_50,
+        "stop_trigger": False,
+        "plug": "Screw Terminal",
+        "degree": 7,
+    },
     "Azure Kinect": {
         "sync_signal": 5,
         "freq": 30,
@@ -33,6 +52,14 @@ DEVICE_SETTINGS = {
         "freq": 0,
         "pulse_length": 4,
         "logic_level": LOGIC_LEVEL_33,
+        "stop_trigger": False,
+        "plug": "BNC",
+    },
+    "XSens": {
+        "sync_signal": 0,
+        "freq": 0,
+        "pulse_length": 4,
+        "logic_level": LOGIC_LEVEL_50,
         "stop_trigger": False,
         "plug": "BNC",
     },
