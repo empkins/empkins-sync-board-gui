@@ -21,6 +21,7 @@ from empkins_sync_board_gui.components import Ui_MainWindowV3
 from empkins_sync_board_gui.config.hardware_config import HardwareConfig, resolve_path
 from empkins_sync_board_gui.constants import (
     ACTIVE_CONNECTION_COLOR,
+    BLACK_FONT_COLOR,
     BOARD_VERSION_V3,
     COMMAND_FILE_PATH,
     CSV_SEPARATOR,
@@ -197,9 +198,9 @@ class MainWindow(QWidget):
         settings_button.setVisible(not is_visible)
         # toggle color
         if is_visible:
-            button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}")
+            button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
         else:
-            button.setStyleSheet(f"background-color : {ACTIVE_CONNECTION_COLOR}")
+            button.setStyleSheet(f"background-color : {ACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
         return is_visible
 
     def _toggle_connection_backend(self, connection, index, is_visible):
@@ -216,7 +217,7 @@ class MainWindow(QWidget):
         settings_button = self.setting_buttons[button_list_idx]
         settings_button.setVisible(False)
         # reset color
-        button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}")
+        button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
 
     def open_source_dialog(self):
         """Open dialog to configure start/stop source."""
@@ -277,7 +278,7 @@ class MainWindow(QWidget):
             connection_button.setEnabled(is_visible)
             if not is_visible:
                 settings_button.setVisible(is_visible)
-                connection_button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}")
+                connection_button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
                 user_hint = (
                     f"Please make sure the little plastic jumper next to {conn.upper()} "
                     f"is at the position marked with `IN`!"
