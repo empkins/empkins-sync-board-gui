@@ -139,6 +139,10 @@ class BoardConnector(QtCore.QThread):
             import glob
 
             ports = glob.glob("/dev/tty[A-Za-z]*")
+        elif sys.platform.startswith("darwin"):
+            import glob
+
+            ports = glob.glob("/dev/tty*")
         else:
             raise BoardConnectionError(f"Sorry, your OS {sys.platform} is currently not supported!")
         return ports
