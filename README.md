@@ -24,7 +24,7 @@ The main UI window resembles the layout of the ESB, and thus enables an intuitiv
 
 ## Installation
 
-To use the GUI **out-of-the-box** without any adaptations, you can download the **standalone executable** for Windows from the [releases page]().
+To use the GUI **out-of-the-box** without any adaptations, you can download the **standalone executable** for Windows or MacOs from the [releases page]().
 If you are comfortable with python/pip, or if you are a linux user, please install the package **via pip**:
 
 ```bash
