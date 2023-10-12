@@ -21,6 +21,7 @@ from empkins_sync_board_gui.components import Ui_MainWindowV3
 from empkins_sync_board_gui.config.hardware_config import HardwareConfig, resolve_path
 from empkins_sync_board_gui.constants import (
     ACTIVE_CONNECTION_COLOR,
+    BLACK_FONT_COLOR,
     BOARD_VERSION_V3,
     COMMAND_FILE_PATH,
     CSV_SEPARATOR,
@@ -96,7 +97,7 @@ class MainWindow(QWidget):
             QTimer.singleShot(100, self._mock_mode_warning)
 
     def _mock_mode_warning(self):
-        msg = QMessageBox(self)
+        msg = QMessageBox()
         msg.setWindowTitle("Attention!")
         msg.setText(
             "You are currently in mock mode for debugging! No commands are sent to the SyncBoard. "
@@ -116,7 +117,7 @@ class MainWindow(QWidget):
         try:
             bc.setup_command_dict()
         except Exception as e:  # noqa: BLE001
-            msg = QMessageBox(self)
+            msg = QMessageBox()
             msg.setWindowTitle("Setup error")
             msg.setText(
                 f"Reading of command file failed with the following error: {e}. "
@@ -166,7 +167,7 @@ class MainWindow(QWidget):
             self.connector.start()
             QApplication.processEvents()
         except BoardConnectionError as e:
-            msg = QMessageBox(self)
+            msg = QMessageBox()
             msg.setWindowTitle("Connection error")
             msg.setText(f"{e.message}")
             msg.setIcon(QMessageBox.Warning)
@@ -197,9 +198,9 @@ class MainWindow(QWidget):
         settings_button.setVisible(not is_visible)
         # toggle color
         if is_visible:
-            button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}")
+            button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
         else:
-            button.setStyleSheet(f"background-color : {ACTIVE_CONNECTION_COLOR}")
+            button.setStyleSheet(f"background-color : {ACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
         return is_visible
 
     def _toggle_connection_backend(self, connection, index, is_visible):
@@ -216,7 +217,7 @@ class MainWindow(QWidget):
         settings_button = self.setting_buttons[button_list_idx]
         settings_button.setVisible(False)
         # reset color
-        button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}")
+        button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
 
     def open_source_dialog(self):
         """Open dialog to configure start/stop source."""
@@ -252,7 +253,7 @@ class MainWindow(QWidget):
             if optional_update_command:
                 self.connector.send_command(optional_update_command)
             if user_hint:
-                msg = QMessageBox(self)
+                msg = QMessageBox()
                 msg.setWindowTitle("Device selected! What's next?")
                 msg.setText(f"{user_hint}")
                 msg.setIcon(QMessageBox.Information)
@@ -277,12 +278,12 @@ class MainWindow(QWidget):
             connection_button.setEnabled(is_visible)
             if not is_visible:
                 settings_button.setVisible(is_visible)
-                connection_button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}")
+                connection_button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
                 user_hint = (
                     f"Please make sure the little plastic jumper next to {conn.upper()} "
                     f"is at the position marked with `IN`!"
                 )
-                msg = QMessageBox(self)
+                msg = QMessageBox()
                 msg.setWindowTitle("Measurement Device selected as source! What's next?")
                 msg.setText(f"{user_hint}")
                 msg.setIcon(QMessageBox.Information)
@@ -412,7 +413,7 @@ class MainWindow(QWidget):
     def board_message_received(self, payload: Dict):
         """Handle messages received from board."""
         self._change_status_led(mode=ERROR_MODE)
-        d = QMessageBox(self)
+        d = QMessageBox()
         d.setWindowTitle("Setup error")
         d.setText(
             f"Sync Board reported the following error: {payload[PAYLOAD_TYPE]}. Please check your settings accordingly!"

@@ -2,6 +2,8 @@
 
 ACTIVE_CONNECTION_COLOR = "rgb(185, 212, 125)"
 INACTIVE_CONNECTION_COLOR = "rgb(251, 217, 221)"
+BLACK_FONT_COLOR = "color : rgb(0,0,0); selection-color : rgb(0, 0, 0);"
+
 
 BUTTON_WIDTH = 111
 BUTTON_HEIGHT = 34
