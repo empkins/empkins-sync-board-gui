@@ -73,7 +73,7 @@ When using MD5 or MD6, make sure to move the plastic jumper for switching betwee
 ### Configuration of Sources
 
 The start and stop source are used to launch and terminate the measurement (i.e. the output of synchronization signals to all connected devices), respectively. 
-When selecting `USB_CDC` from the respective dropdown lists, you can start/stop the measurement with the start/stop button in the GUI. Alternatively, you could control the measurement with the buttons on the ESB (labeled Button1 and Button2, also schematically displayed in the GUI).
+When selecting `GUI` from the respective dropdown lists, you can start/stop the measurement with the start/stop button in the GUI. Alternatively, you could control the measurement with the buttons on the ESB (labeled Button1 and Button2, also schematically displayed in the GUI).
 To trigger a measurement from an input source, select the input port you want to connect this external source to. 
 In this case, you must select the desired receive signal by clicking on the source configuration button and choosing from the `Sync Signal` dropdown.
 For all types of sources, you can also set a delay for the measurement to start/stop in the source settings.

@@ -264,7 +264,7 @@ class MainWindow(QWidget):
         if any(
             [mode == START_MODE and not self.measurement_is_running, mode == STOP_MODE and self.measurement_is_running]
         ):
-            is_usb = dropdown.currentText() == "USB_CDC"
+            is_usb = dropdown.currentText() == "GUI"
             # starting from GUI only possible when start source set to usb
             self.ui.play_button.setDisabled(not is_usb)
 
@@ -381,7 +381,7 @@ class MainWindow(QWidget):
     def _repaint_gui(self):
         self.ui.start_source.setCurrentIndex(self.board_config.start_source.source)
         self.ui.stop_source.setCurrentIndex(self.board_config.stop_source.source)
-        is_usb = self.ui.start_source.currentText() == "USB_CDC"
+        is_usb = self.ui.start_source.currentText() == "GUI"
         self.ui.play_button.setDisabled(not is_usb)
         assert len(self.board_config.connections) == len(
             self.hw_config.connection_names

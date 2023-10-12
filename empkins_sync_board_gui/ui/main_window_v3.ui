@@ -903,7 +903,7 @@ selection-color:rgb(0, 0, 0);</string>
       </property>
       <item>
        <property name="text">
-        <string>USB_CDC</string>
+        <string>GUI</string>
        </property>
       </item>
       <item>
@@ -1137,7 +1137,7 @@ selection-color:rgb(0, 0, 0);</string>
       </property>
       <item>
        <property name="text">
-        <string>USB_CDC</string>
+        <string>GUI</string>
        </property>
       </item>
       <item>
