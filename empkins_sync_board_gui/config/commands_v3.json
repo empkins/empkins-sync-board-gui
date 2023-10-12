@@ -4,7 +4,7 @@
     "stop_source": "01",
     "trigger": [
         {
-            "USB_CDC": "00"
+            "GUI": "00"
         },
         {
             "Button1": "01"
