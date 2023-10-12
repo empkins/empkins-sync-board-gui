@@ -1,5 +1,5 @@
 """Main Window of the GUI."""
-
+import sys
 from datetime import datetime
 from pathlib import Path
 from time import sleep
@@ -173,7 +173,7 @@ class MainWindow(QWidget):
             msg.setIcon(QMessageBox.Warning)
             ret = msg.exec_()
             if ret:
-                self.close()
+                sys.exit(1)
 
     def init_start_stop_source(self):
         """Set initial start and stop source for board."""

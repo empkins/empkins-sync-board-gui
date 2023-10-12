@@ -65,6 +65,8 @@ class BoardConnector(QtCore.QThread):
             try:
                 self._port = self._get_port_from_list(BoardConnector._get_port_list(), progress)
                 self._ser = Serial(self._port, timeout=self._timeout)
+            except BoardConnectionError as e:
+                raise BoardConnectionError(e.message) from e
             except (OSError, SerialException) as e:
                 raise BoardConnectionError("No suitable device found!") from e
         else:
@@ -171,7 +173,7 @@ class BoardConnector(QtCore.QThread):
     def send_command(self, cmd: bytes):
         """Send a command to the board."""
         print(f"Sending: {cmd}")
-        if not self._mock:
+        if not self._mock and self._ser:
             self._ser.flush()
             self._ser.write(bytearray(cmd))
 
