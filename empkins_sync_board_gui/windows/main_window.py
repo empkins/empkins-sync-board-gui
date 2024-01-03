@@ -87,7 +87,7 @@ class MainWindow(QWidget):
         self.connector_setup()
         # after successful connector setup, send first commands
         self.init_start_stop_source()
-        # setup start and stop source afterward as they might be using the connector already
+        self.activate_buttons()
         self.ui.start_source.currentIndexChanged.connect(self.change_start_source)
         self._set_source_button_activation(self.ui.start_source, mode=START_MODE)
         self.ui.stop_source.currentIndexChanged.connect(self.change_stop_source)
@@ -180,6 +180,14 @@ class MainWindow(QWidget):
         # as board interprets "Button 1" as default values, we need to change it to USB on initialisation
         self.change_start_source()
         self.change_stop_source()
+
+    def activate_buttons(self):
+        """Activate buttons as possible event input sources.
+
+        They are activated directly after startup and remain active during the entire measurement.
+        """
+        for cmd in self.board_config.activate_buttons():
+            self.connector.send_command(cmd)
 
     def toggle_connection(self):
         """Toggle connection active/inactive."""
