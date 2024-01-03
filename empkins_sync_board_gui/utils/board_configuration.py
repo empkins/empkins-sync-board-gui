@@ -131,6 +131,23 @@ class BoardConfig:
         cmd = bytes.fromhex(cmd) + event_id
         return cmd
 
+    def activate_buttons(self) -> Tuple[bytes, bytes]:
+        """Create command to activate buttons."""
+        print(self.command_dict["trigger"])
+        button_1_cmd = (
+            self.command_dict["hello"]
+            + self.command_dict["event"]
+            + self.command_dict["trigger"][1]["Button1"]
+            + self.command_dict["event_sync_signal"][2]["Any Edge"]
+        )
+        button_2_cmd = (
+            self.command_dict["hello"]
+            + self.command_dict["event"]
+            + self.command_dict["trigger"][2]["Button2"]
+            + self.command_dict["event_sync_signal"][2]["Any Edge"]
+        )
+        return bytes.fromhex(button_1_cmd), bytes.fromhex(button_2_cmd)
+
     @property
     def start_source(self):
         """Return start source."""
