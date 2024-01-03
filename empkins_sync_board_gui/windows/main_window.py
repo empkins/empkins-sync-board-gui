@@ -269,7 +269,7 @@ class MainWindow(QWidget):
             # starting from GUI only possible when start source set to usb
             self.ui.play_button.setDisabled(not is_usb)
 
-    def _handle_connection_activity(self, sources: List[QComboBox]):
+    def _handle_connection_activity(self, sources: List[QComboBox], changed_source_value=None):
         for conn in self.hw_config.bidirectional_connections:
             index = self.hw_config.connection_names.index(conn)
             settings_button = self.setting_buttons[index]
@@ -279,15 +279,16 @@ class MainWindow(QWidget):
             if not is_visible:
                 settings_button.setVisible(is_visible)
                 connection_button.setStyleSheet(f"background-color : {INACTIVE_CONNECTION_COLOR}; {BLACK_FONT_COLOR}")
-                user_hint = (
-                    f"Please make sure the little plastic jumper next to {conn.upper()} "
-                    f"is at the position marked with `IN`!"
-                )
-                msg = QMessageBox()
-                msg.setWindowTitle("Measurement Device selected as source! What's next?")
-                msg.setText(f"{user_hint}")
-                msg.setIcon(QMessageBox.Information)
-                msg.exec_()
+                if changed_source_value.lower() in self.hw_config.bidirectional_connections:
+                    user_hint = (
+                        f"Please make sure the little plastic jumper next to {conn.upper()} "
+                        f"is at the position marked with `IN`!"
+                    )
+                    msg = QMessageBox()
+                    msg.setWindowTitle("Measurement Device selected as source! What's next?")
+                    msg.setText(f"{user_hint}")
+                    msg.setIcon(QMessageBox.Information)
+                    msg.exec_()
 
     def change_start_source(self):
         """Change start source."""
@@ -300,7 +301,9 @@ class MainWindow(QWidget):
             self.board_config.start_source.sync_signal,
         )
         self._set_source_button_activation(self.ui.start_source, mode=START_MODE)  # only enable when USB is selected
-        self._handle_connection_activity([self.ui.start_source, self.ui.stop_source])
+        self._handle_connection_activity(
+            [self.ui.start_source, self.ui.stop_source], changed_source_value=self.ui.start_source.currentText()
+        )
         self.connector.send_command(update_command)
 
     def change_stop_source(self):
@@ -314,7 +317,9 @@ class MainWindow(QWidget):
             self.board_config.stop_source.sync_signal,
         )
         self._set_source_button_activation(self.ui.stop_source, mode=STOP_MODE)  # only enable when USB is selected
-        self._handle_connection_activity([self.ui.start_source, self.ui.stop_source])
+        self._handle_connection_activity(
+            [self.ui.start_source, self.ui.stop_source], changed_source_value=self.ui.stop_source.currentText()
+        )
         self.connector.send_command(update_command)
 
     def get_import_paths(self):
