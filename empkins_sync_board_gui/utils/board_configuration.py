@@ -16,6 +16,7 @@ from empkins_sync_board_gui.constants import (
     DEFAULT_SOURCE,
     DEFAULT_SYNC_SIGNAL,
     INPUT_CONNECTION,
+    IS_ACTIVE,
     MAX_DEGREE,
     MAX_DELAY,
     MAX_FREQ,
@@ -130,6 +131,25 @@ class BoardConfig:
         event_id = event_id.to_bytes(2, "big")
         cmd = bytes.fromhex(cmd) + event_id
         return cmd
+
+    def activate_buttons(self) -> Tuple[bytes, bytes]:
+        """Create command to activate buttons."""
+        print(self.command_dict["trigger"])
+        button_1_cmd = (
+            self.command_dict["hello"]
+            + self.command_dict["event"]
+            + self.command_dict["trigger"][1]["Button1"]
+            + IS_ACTIVE
+            + self.command_dict["event_sync_signal"][2]["Any Edge"]
+        )
+        button_2_cmd = (
+            self.command_dict["hello"]
+            + self.command_dict["event"]
+            + self.command_dict["trigger"][2]["Button2"]
+            + IS_ACTIVE
+            + self.command_dict["event_sync_signal"][2]["Any Edge"]
+        )
+        return bytes.fromhex(button_1_cmd), bytes.fromhex(button_2_cmd)
 
     @property
     def start_source(self):
@@ -366,9 +386,6 @@ class Connection:
     ):
         """Update bidirectional connection properties."""
         if self.conn_type == OUTPUT_CONNECTION:
-            inactive_update_command = self._build_event_command(
-                command_dict, conn_idx=INPUT_CONNECTION, is_active=False, sync_signal=DEFAULT_SYNC_SIGNAL
-            )
             active_update_command = self.update_connection(
                 command_dict,
                 conn_idx,
@@ -384,23 +401,12 @@ class Connection:
         else:
             # manipulate connection type to set output connection inactive first
             self.conn_type = OUTPUT_CONNECTION
-            inactive_update_command = self.update_connection(
-                command_dict,
-                conn_idx,
-                is_active=False,
-                delay=delay,
-                sync_signal=sync_signal,
-                freq=freq,
-                stop_trigger=stop_trigger,
-                degree=degree,
-                pulse_length=pulse_length,
-            )
             # reset connection type
             self.conn_type = INPUT_CONNECTION
             active_update_command = self._build_event_command(
                 command_dict, conn_idx, is_active=True, sync_signal=sync_signal
             )
-        return active_update_command, inactive_update_command
+        return active_update_command
 
     def _toggle_bidirectional_connection(self, command_dict: Dict[str, str], conn_idx: int, is_visible) -> bytes:
         """Toggle bidirectional connection."""

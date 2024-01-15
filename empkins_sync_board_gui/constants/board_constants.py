@@ -11,6 +11,8 @@ MESSAGE_FILE_PATH = {BOARD_VERSION_V3: "config/messages_v3.json"}
 # connection information
 INPUT_CONNECTION = 0
 OUTPUT_CONNECTION = 1
+IS_INACTIVE = "00"
+IS_ACTIVE = "01"
 CONNECTION_MAPPING = "mapping"
 CONNECTION_CONFIG = "connections"
 CONNECTION_NAMES = "names"

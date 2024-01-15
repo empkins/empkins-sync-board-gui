@@ -87,7 +87,7 @@ class MainWindow(QWidget):
         self.connector_setup()
         # after successful connector setup, send first commands
         self.init_start_stop_source()
-        # setup start and stop source afterward as they might be using the connector already
+        self.activate_buttons()
         self.ui.start_source.currentIndexChanged.connect(self.change_start_source)
         self._set_source_button_activation(self.ui.start_source, mode=START_MODE)
         self.ui.stop_source.currentIndexChanged.connect(self.change_stop_source)
@@ -181,6 +181,14 @@ class MainWindow(QWidget):
         self.change_start_source()
         self.change_stop_source()
 
+    def activate_buttons(self):
+        """Activate buttons as possible event input sources.
+
+        They are activated directly after startup and remain active during the entire measurement.
+        """
+        for cmd in self.board_config.activate_buttons():
+            self.connector.send_command(cmd)
+
     def toggle_connection(self):
         """Toggle connection active/inactive."""
         button = self.sender()
@@ -246,12 +254,9 @@ class MainWindow(QWidget):
                 raise ValueError(f"Invalid connection type {conn.conn_type}!")
             d.exec_()
             d.show()
-            connection_update_command, optional_update_command, user_hint = d.get_data()
-            # only send if it's not empty
+            connection_update_command, user_hint = d.get_data()
             if connection_update_command:
                 self.connector.send_command(connection_update_command)
-            if optional_update_command:
-                self.connector.send_command(optional_update_command)
             if user_hint:
                 msg = QMessageBox()
                 msg.setWindowTitle("Device selected! What's next?")

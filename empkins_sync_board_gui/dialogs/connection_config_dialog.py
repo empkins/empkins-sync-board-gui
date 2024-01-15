@@ -44,7 +44,7 @@ class ConnectionConfigDialog(QDialog):
 
     def get_data(self):
         """Return the data entered by the user after dialog closes."""
-        return self.connection_update_command, self.optional_update_command, self.user_hint
+        return self.connection_update_command, self.user_hint
 
     def _setup_ui(self):
         self.ui.setupUi(self)
@@ -275,8 +275,7 @@ class InputOutputConnectionConfigDialog(OutputConnectionConfigDialog):
 
     def __init__(self, main_window: QWidget, conn: Connection, conn_idx: int):
         super().__init__(main_window, conn, conn_idx, init_ui=Ui_InOutConnectionConfigDialog())
-        self.input_connection_update_command = ""
-        self.output_connection_update_command = ""
+        self.connection_update_command = ""
         self._set_configuration_option()
 
     def _setup_ui(self):
@@ -354,10 +353,7 @@ class InputOutputConnectionConfigDialog(OutputConnectionConfigDialog):
         conn_type = INPUT_CONNECTION if self.ui.event_config_radio.isChecked() else OUTPUT_CONNECTION
         self.connection.conn_type = conn_type
         if conn_type == OUTPUT_CONNECTION:
-            (
-                self.output_connection_update_command,
-                self.input_connection_update_command,
-            ) = self.connection.update_bidirectional_connection(
+            self.connection_update_command = self.connection.update_bidirectional_connection(
                 self.main_window.board_config.command_dict,
                 self.connection_index,
                 delay=delay,
@@ -369,10 +365,7 @@ class InputOutputConnectionConfigDialog(OutputConnectionConfigDialog):
             self.user_hint = "Please make sure one little plastic jumper is at the position marked with `OUT`!\n"
 
         else:
-            (
-                self.input_connection_update_command,
-                self.output_connection_update_command,
-            ) = self.connection.update_bidirectional_connection(
+            self.connection_update_command = self.connection.update_bidirectional_connection(
                 self.main_window.board_config.command_dict,
                 self.connection_index,
                 delay=delay,
@@ -387,4 +380,4 @@ class InputOutputConnectionConfigDialog(OutputConnectionConfigDialog):
 
     def get_data(self):
         """Access connection update commands and user hint after dialog was closed."""
-        return self.input_connection_update_command, self.output_connection_update_command, self.user_hint
+        return self.connection_update_command, self.user_hint
