@@ -16,6 +16,7 @@ from empkins_sync_board_gui.constants import (
     DEFAULT_SOURCE,
     DEFAULT_SYNC_SIGNAL,
     INPUT_CONNECTION,
+    IS_ACTIVE,
     MAX_DEGREE,
     MAX_DELAY,
     MAX_FREQ,
@@ -138,12 +139,14 @@ class BoardConfig:
             self.command_dict["hello"]
             + self.command_dict["event"]
             + self.command_dict["trigger"][1]["Button1"]
+            + IS_ACTIVE
             + self.command_dict["event_sync_signal"][2]["Any Edge"]
         )
         button_2_cmd = (
             self.command_dict["hello"]
             + self.command_dict["event"]
             + self.command_dict["trigger"][2]["Button2"]
+            + IS_ACTIVE
             + self.command_dict["event_sync_signal"][2]["Any Edge"]
         )
         return bytes.fromhex(button_1_cmd), bytes.fromhex(button_2_cmd)
