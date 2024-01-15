@@ -254,10 +254,7 @@ class MainWindow(QWidget):
                 raise ValueError(f"Invalid connection type {conn.conn_type}!")
             d.exec_()
             d.show()
-            connection_update_command, optional_update_command, user_hint = d.get_data()
-            # only send if it's not empty
-            if optional_update_command:
-                self.connector.send_command(optional_update_command)
+            connection_update_command, user_hint = d.get_data()
             if connection_update_command:
                 self.connector.send_command(connection_update_command)
             if user_hint:

@@ -386,9 +386,6 @@ class Connection:
     ):
         """Update bidirectional connection properties."""
         if self.conn_type == OUTPUT_CONNECTION:
-            inactive_update_command = self._build_event_command(
-                command_dict, conn_idx=INPUT_CONNECTION, is_active=False, sync_signal=DEFAULT_SYNC_SIGNAL
-            )
             active_update_command = self.update_connection(
                 command_dict,
                 conn_idx,
@@ -404,23 +401,12 @@ class Connection:
         else:
             # manipulate connection type to set output connection inactive first
             self.conn_type = OUTPUT_CONNECTION
-            inactive_update_command = self.update_connection(
-                command_dict,
-                conn_idx,
-                is_active=False,
-                delay=delay,
-                sync_signal=sync_signal,
-                freq=freq,
-                stop_trigger=stop_trigger,
-                degree=degree,
-                pulse_length=pulse_length,
-            )
             # reset connection type
             self.conn_type = INPUT_CONNECTION
             active_update_command = self._build_event_command(
                 command_dict, conn_idx, is_active=True, sync_signal=sync_signal
             )
-        return active_update_command, inactive_update_command
+        return active_update_command
 
     def _toggle_bidirectional_connection(self, command_dict: Dict[str, str], conn_idx: int, is_visible) -> bytes:
         """Toggle bidirectional connection."""
