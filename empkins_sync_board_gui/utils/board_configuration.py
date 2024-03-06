@@ -476,6 +476,9 @@ class Connection:
         )
         pulse_length = self._pulse_length.to_bytes(2, "big")
         freq = self._freq.to_bytes(2, "big")
+        if "trigger" in SYNC_SIGNAL_MAPPING_OUTPUT[self._sync_signal].lower():
+            # trigger signal will break otherwise
+            freq = DEFAULT_FREQ.to_bytes(2, "big")
         stop_trigger = bytes.fromhex(command_dict["stop_trigger"][STOP_TRIGGER_MAPPING[self._stop_trigger]])
         degree = self._degree.to_bytes(1, "big")
 
