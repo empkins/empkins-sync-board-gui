@@ -3,7 +3,15 @@
 from empkins_sync_board_gui.constants import LOGIC_LEVEL_18, LOGIC_LEVEL_33, LOGIC_LEVEL_50
 
 DEFAULT_DEVICES = [
-    "EmpkinS", "Biopac", "Somnomedics PSG", "Azure Kinect", "Intel RealSense", "Qualisys", "OptiTrack", "NilsPod", "XSens"
+    "EmpkinS",
+    "Biopac",
+    "Somnomedics PSG",
+    "Azure Kinect",
+    "Intel RealSense",
+    "Qualisys",
+    "OptiTrack",
+    "NilsPod",
+    "XSens"
 ]
 
 # indices of sync_signal property refer to sync signals specified in `board_constants.SYNC_SIGNAL_MAPPING_OUTPUT`
