@@ -36,7 +36,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: /Users/runner/work/empkins-sync-board-gui/empkins-sync-board-gui/osb_gui_macos.zip
+        asset_path: /Users/runner/work/open-sync-board-gui/open-sync-board-gui/osb_gui_macos.zip
         asset_name: osb_gui_macos.zip
         asset_content_type: application/zip
         
