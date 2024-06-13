@@ -40,7 +40,7 @@ def update_version(version):
         .strip()
         .split(" ", 1)[1]
     )
-    update_version_strings(HERE.joinpath("empkins-sync-board-gui/__init__.py"), new_version)
+    update_version_strings(HERE.joinpath("open-sync-board-gui/__init__.py"), new_version)
 
 
 def task_update_version():
