@@ -1,6 +1,6 @@
 # Open Sync Board GUI
 
-[![PyPI](https://img.shields.io/pypi/v/empkins-sync-board-gui)](https://pypi.org/project/open-sync-board-gui/)
+[![PyPI](https://img.shields.io/pypi/v/open-sync-board-gui)](https://pypi.org/project/open-sync-board-gui/)
 ![GitHub](https://img.shields.io/github/license/empkins/open-sync-board-gui)
 [![Linting](https://github.com/empkins/open-sync-board-gui/actions/workflows/lint.yml/badge.svg)](https://github.com/empkins/open-sync-board-gui/actions/workflows/lint.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
