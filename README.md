@@ -1,13 +1,13 @@
 # Open Sync Board GUI
 
-[![PyPI](https://img.shields.io/pypi/v/empkins-sync-board-gui)](https://pypi.org/project/empkins-sync-board-gui/)
-![GitHub](https://img.shields.io/github/license/empkins/empkins-sync-board-gui)
-[![Linting](https://github.com/empkins/empkins-sync-board-gui/actions/workflows/lint.yml/badge.svg)](https://github.com/empkins/empkins-sync-board-gui/actions/workflows/lint.yml)
+[![PyPI](https://img.shields.io/pypi/v/empkins-sync-board-gui)](https://pypi.org/project/open-sync-board-gui/)
+![GitHub](https://img.shields.io/github/license/empkins/open-sync-board-gui)
+[![Linting](https://github.com/empkins/open-sync-board-gui/actions/workflows/lint.yml/badge.svg)](https://github.com/empkins/open-sync-board-gui/actions/workflows/lint.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## Description
 
-This Repository is part of the [Open Sync Board](https://github.com/empkins/empkins-sync-board) project. The Open Sync Board (OSB) can be used
+This Repository is part of the [Open Sync Board](https://github.com/empkins/open-sync-board) project. The Open Sync Board (OSB) can be used
 to **precisely synchronize different measurement modalities** on hardware level.
 The accompanying **Graphical User Interface (GUI)** allows to easily adjust the outputs
 of the OSB with the required synchronization signals for the connected modalities, and is also **suited for non-technical users**.
@@ -112,20 +112,20 @@ a virtual environment, and install all development dependencies:
 With ssh access:
 
 ```bash
-git clone git@github.com:empkins/empkins-sync-board-gui.git
-cd empkins-sync-board-gui
+git clone git@github.com:empkins/open-sync-board-gui.git
+cd open-sync-board-gui
 poetry install
 ```
 
 With https access:
 
 ```bash
-git clone https://github.com/empkins/empkins-sync-board-gui.git
-cd empkins-sync-board-gui
+git clone https://github.com/empkins/open-sync-board-gui.git
+cd open-sync-board-gui
 poetry install
 ```
 
-Afterwards open a shell inside the project folder (`your_path_to/empkins-sync-board-gui`) and enter the following commands
+Afterwards open a shell inside the project folder (`your_path_to/open-sync-board-gui`) and enter the following commands
 
 ```bash
 poetry shell
@@ -187,7 +187,7 @@ For designing UI components, the program *Qt Designer* (included in
 the [Qt Development Tools](https://www.qt.io/download)) was utilized. To modify or add frontend components, the `*.ui`
 -files from the `emkins_sync_board_gui/ui/` directory can be opened with *Qt Designer*. After modifying the UI,
 the `*.ui`-files need to be converted to `*.py`-files. This can be done by executing the following command in
-the `empkins-sync-board-gui` virtual environment:
+the `open-sync-board-gui` virtual environment:
 ```
 poe update_ui
 ```
