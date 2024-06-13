@@ -2,6 +2,6 @@
 
 __version__ = "0.1.0"
 
-from empkins_sync_board_gui.config.hardware_config import HardwareConfig
+from open_sync_board_gui.config.hardware_config import HardwareConfig
 
 __all__ = ["HardwareConfig"]

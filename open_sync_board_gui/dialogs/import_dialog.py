@@ -5,8 +5,8 @@ from typing import Union
 
 from PySide2.QtWidgets import QCompleter, QDialog, QDirModel, QFileDialog, QWidget
 
-from empkins_sync_board_gui.components import Ui_ConfigImportDialog
-from empkins_sync_board_gui.constants import CONFIG_FILE_TYPE
+from open_sync_board_gui.components import Ui_ConfigImportDialog
+from open_sync_board_gui.constants import CONFIG_FILE_TYPE
 
 
 class ConfigImportDialog(QDialog):

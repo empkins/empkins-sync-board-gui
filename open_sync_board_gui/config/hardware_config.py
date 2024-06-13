@@ -4,7 +4,7 @@ import sys
 from configparser import ConfigParser
 from pathlib import Path
 
-from empkins_sync_board_gui.constants import (
+from open_sync_board_gui.constants import (
     BOARD_VERSION_V3,
     CONFIG_FILE_PATH,
     CONFIG_LOCATIONS,
@@ -44,7 +44,7 @@ def _convert_to_list(to_split: str, to_int: bool = False):
 
 
 class HardwareConfig:
-    """Class for storing hardware-version specific configuration of the EmpkinS Sync Board."""
+    """Class for storing hardware-version specific configuration of the Open Sync Board."""
 
     def __init__(self, version=BOARD_VERSION_V3):
         self.version = version

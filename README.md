@@ -1,4 +1,4 @@
-# EmpkinS Sync Board GUI
+# Open Sync Board GUI
 
 [![PyPI](https://img.shields.io/pypi/v/empkins-sync-board-gui)](https://pypi.org/project/empkins-sync-board-gui/)
 ![GitHub](https://img.shields.io/github/license/empkins/empkins-sync-board-gui)
@@ -7,14 +7,14 @@
 
 ## Description
 
-This Repository is part of the [EmpkinS Sync Board](https://github.com/empkins/empkins-sync-board) project. The EmpkinS Sync Board (ESB) can be used
+This Repository is part of the [Open Sync Board](https://github.com/empkins/empkins-sync-board) project. The Open Sync Board (OSB) can be used
 to **precisely synchronize different measurement modalities** on hardware level.
 The accompanying **Graphical User Interface (GUI)** allows to easily adjust the outputs
-of the ESB with the required synchronization signals for the connected modalities, and is also **suited for non-technical users**.
+of the OSB with the required synchronization signals for the connected modalities, and is also **suited for non-technical users**.
 
-<img src="img/esb_gui.png">
+<img src="img/osb_gui.png">
 
-The main UI window resembles the layout of the ESB, and thus enables an intuitive workflow. The GUI allows to:
+The main UI window resembles the layout of the OSB, and thus enables an intuitive workflow. The GUI allows to:
 - Select and deselect outputs to use
 - Configure the behavior of each output signal either manually or by selecting a connected device from a list of default devices
 - Select and configure input ports to process received signals, e.g., for triggered measurements
@@ -28,10 +28,10 @@ To use the GUI **out-of-the-box** without any adaptations, you can download the 
 If you are comfortable with python/pip, or if you are a linux user, please install the package **via pip**:
 
 ```bash
-pip install empkins_sync_board_gui
+pip install open_sync_board_gui
 ```
 
-To use the GUI, make sure you have the readily flashed ESB connected to your computer via USB.
+To use the GUI, make sure you have the readily flashed OSB connected to your computer via USB.
 You can then run the GUI by executing the following command in your shell:
 
 ```bash
@@ -43,7 +43,7 @@ the [Setup remarks when using Linux](#setup-remarks-when-using-linux) section be
 
 ## Usage
 
-Before starting the GUI, make sure the **ESB is connected** to your computer **via USB**.
+Before starting the GUI, make sure the **OSB is connected** to your computer **via USB**.
 When executing the GUI, at first, a dialog will pop up asking you for the storage location and name of the log files that will be generated.
 
 <img src="img/configure_path.png" width="300">
@@ -51,20 +51,20 @@ When executing the GUI, at first, a dialog will pop up asking you for the storag
 Every time the GUI is executed, a new file is created storing the timestamps when a measurement is started or stopped, and when an event (e.g., Button press, Input trigger) is reported.
 Select a path and filename of your choice and click `OK`.
 
-Afterwards, the **main window** of the GUI will open. The main UI window resembles the layout of the ESB, and thus simplifies setting up the GUI as well as the ESB correctly.
+Afterwards, the **main window** of the GUI will open. The main UI window resembles the layout of the OSB, and thus simplifies setting up the GUI as well as the OSB correctly.
 First, you can select the connections (measuring devices) that you want to use for connecting devices. Activated connections are highlighted in green and provide a settings button to configure their behavior.
 
 ### Configuration of Measurement Device (MD) Ports
 
 The connections MD1-MD4 and MD7 are **output ports**, i.e., they send a synchronization signal of your choice after starting the measurement. When clicking the settings button, a dialog will open that allows you to configure the behavior of the selected output connection.
 You can either select a **default device** from the list of available devices, or configure the behavior manually. In the latter case, **depending on the sychronization signal** that you choose from the `Sync Signal` dropdown, different properties are available for configuration. Click `OK` to save your changes and close the dialog.
-In case you selected a default device, you will be prompted how to proceed with connecting the device to the ESB, more precisely, which plug to use for the connection, and which voltage level to use. To configure the voltage level, you have to move the little plastic jumper that you can find next to the corresponding connection to the desired position. It should be either placed at the `1.8`, `3.3`, or `5` position labeled in the GUI and moved to the position you are prompted to use. If your device requires a different logic level (between 1V and 7.5V), you may use the `NC` position and solder in a suitable resistor. If your device doesn't bring its own power supply for regulating the logic level, make sure you have another jumper set on `Vint`. Otherwise, move this jumper to the `NC` position next to `Vint`.
+In case you selected a default device, you will be prompted how to proceed with connecting the device to the OSB, more precisely, which plug to use for the connection, and which voltage level to use. To configure the voltage level, you have to move the little plastic jumper that you can find next to the corresponding connection to the desired position. It should be either placed at the `1.8`, `3.3`, or `5` position labeled in the GUI and moved to the position you are prompted to use. If your device requires a different logic level (between 1V and 7.5V), you may use the `NC` position and solder in a suitable resistor. If your device doesn't bring its own power supply for regulating the logic level, make sure you have another jumper set on `Vint`. Otherwise, move this jumper to the `NC` position next to `Vint`.
 If you chose manual configuration, you need to figure out the required logic level for your device from its manual.
 
 <img src="img/default_config.png" width="300">
 <img src="img/manual_config.png" width="300">
 
-The connections MD5 and MD6 can be configured either as **output ports** analogously to the other connections, or as **input ports**. On one hand, you can use the input ports to connect some kind of switch to the ESB and log every time it sends the selected signal. This can i.e. be used for event logging, and can thus be achieved by selecting the `Event Input` option in the connection settings. 
+The connections MD5 and MD6 can be configured either as **output ports** analogously to the other connections, or as **input ports**. On one hand, you can use the input ports to connect some kind of switch to the OSB and log every time it sends the selected signal. This can i.e. be used for event logging, and can thus be achieved by selecting the `Event Input` option in the connection settings. 
 On the other hand, a connected input can be used to start or stop the measurement. This can be configured in the [source settings](todo#configuration-of-sources).
 When using MD5 or MD6, make sure to move the plastic jumper for switching between input and output mode as prompted by the GUI.
 
@@ -73,7 +73,7 @@ When using MD5 or MD6, make sure to move the plastic jumper for switching betwee
 ### Configuration of Sources
 
 The start and stop source are used to launch and terminate the measurement (i.e. the output of synchronization signals to all connected devices), respectively. 
-When selecting `GUI` from the respective dropdown lists, you can start/stop the measurement with the start/stop button in the GUI. Alternatively, you could control the measurement with the buttons on the ESB (labeled Button1 and Button2, also schematically displayed in the GUI).
+When selecting `GUI` from the respective dropdown lists, you can start/stop the measurement with the start/stop button in the GUI. Alternatively, you could control the measurement with the buttons on the OSB (labeled Button1 and Button2, also schematically displayed in the GUI).
 To trigger a measurement from an input source, select the input port you want to connect this external source to. 
 In this case, you must select the desired receive signal by clicking on the source configuration button and choosing from the `Sync Signal` dropdown.
 For all types of sources, you can also set a delay for the measurement to start/stop in the source settings.
@@ -82,7 +82,7 @@ For all types of sources, you can also set a delay for the measurement to start/
 
 ### During the measurement
 
-When you are all set up, you can start the measurement from the selected source and monitor the Sync Board its status via the GUI as well as the ESB by its status LED. When the LED is turned off, the board is in idle state. When the LED is blue, the measurement is running. When the LED is red, an error has occurred that will be displayed to you in the GUI.  
+When you are all set up, you can start the measurement from the selected source and monitor the Sync Board its status via the GUI as well as the OSB by its status LED. When the LED is turned off, the board is in idle state. When the LED is blue, the measurement is running. When the LED is red, an error has occurred that will be displayed to you in the GUI.  
 
 <img src="img/led.png" width="150">
 
@@ -129,7 +129,7 @@ Afterwards open a shell inside the project folder (`your_path_to/empkins-sync-bo
 
 ```bash
 poetry shell
-cd empkins_sync_board_gui
+cd open_sync_board_gui
 python start_gui.py
 ```
 
@@ -140,7 +140,7 @@ to start the GUI.
 The repository is structured as follows:
 
 ```bash
-├── empkins_sync_board_gui/                                  
+├── open_sync_board_gui/                                  
      ├── components/    # Contains automatically compiled ui files. Do not modify!                                         
      ├── config/        # Contains hardware configuration files. When hardware is adapted, changes might be required!
      ├── constants/     # Contains general constants, command messages for board interface, and default devices 
@@ -157,11 +157,11 @@ The repository is structured as follows:
 ### Mock mode
 For experimenting and debugging, there is a mock mode available.
 In this mode, the GUI does not require a connection to a physical SyncBoard, but instead simulates the behavior of the board.
-To enable the mock mode, set the `mock_mode` variable in the entry script `empkins_sync_board_gui/script/start_gui.py` to `True`.
+To enable the mock mode, set the `mock_mode` variable in the entry script `open_sync_board_gui/script/start_gui.py` to `True`.
 
 ### Adding a new default device
 
-All default devices are defined in the `empkins_sync_board_gui/constants/default_devices.py` file. To add a new device,
+All default devices are defined in the `open_sync_board_gui/constants/default_devices.py` file. To add a new device,
 you need to add its name to the comma separated list of `DEFAULT_DEVICES` and add a new entry to the `DEVICE_SETTINGS`
 dictionary. The key of the dictionary entry is the name of the device, and the value is a dictionary containing the
 following keys:
@@ -193,7 +193,7 @@ poe update_ui
 ```
 Under the hood, this command runs the `scripts/compile_ui_files.sh` bash script. The designer and resource files are
 compiled using the `pyside2-uic` and `pyside2-rcc` command line tools and stored in
-the `empkins_sync_board_gui/components/` directory.
+the `open_sync_board_gui/components/` directory.
 
 ## Setup remarks when using Linux
 
@@ -235,5 +235,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Contributing
 
-We welcome contributions to `EmpkinS Sync Board GUI`! For more information, have a look at
+We welcome contributions to `Open Sync Board GUI`! For more information, have a look at
 the [Contributing Guidelines](CONTRIBUTING.md).

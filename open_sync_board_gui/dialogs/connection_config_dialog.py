@@ -5,12 +5,12 @@ from typing import List
 
 from PySide2.QtWidgets import QCheckBox, QDialog, QGroupBox, QLabel, QRadioButton, QSpinBox, QWidget
 
-from empkins_sync_board_gui.components import (
+from open_sync_board_gui.components import (
     Ui_InOutConnectionConfigDialog,
     Ui_InputConnectionConfigDialog,
     Ui_OutputConnectionConfigDialog,
 )
-from empkins_sync_board_gui.constants import (
+from open_sync_board_gui.constants import (
     DEFAULT_DEVICES,
     DEFAULT_SYNC_SIGNAL,
     DEFAULT_VALUE,
@@ -25,7 +25,7 @@ from empkins_sync_board_gui.constants import (
     SYNC_SIGNAL_WITHOUT_PULSE_LENGTH,
     SYNC_SIGNAL_WITHOUT_STOP_TRIGGER,
 )
-from empkins_sync_board_gui.utils import Connection
+from open_sync_board_gui.utils import Connection
 
 
 class ConnectionConfigDialog(QDialog):

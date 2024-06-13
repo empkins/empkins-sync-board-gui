@@ -1,4 +1,4 @@
-"""Handles communication with the EmpkinS Sync Board."""
+"""Handles communication with the Open Sync Board."""
 import json
 import sys
 import time
@@ -11,9 +11,9 @@ from PySide2.QtWidgets import QApplication, QProgressBar
 from serial import Serial
 from serial.serialutil import SerialException
 
-from empkins_sync_board_gui.config import HardwareConfig
-from empkins_sync_board_gui.config.hardware_config import resolve_path
-from empkins_sync_board_gui.constants import (
+from open_sync_board_gui.config import HardwareConfig
+from open_sync_board_gui.config.hardware_config import resolve_path
+from open_sync_board_gui.constants import (
     BOARD_ERROR_LIST,
     BOARD_EVENT_LIST,
     BOARD_STATUS_LIST,
@@ -34,7 +34,7 @@ class SyncBoardMessageSignal(QObject):
 
 
 class BoardConnector(QtCore.QThread):
-    """Class for handling communication with the EmpkinS Sync Board."""
+    """Class for handling communication with the Open Sync Board."""
 
     HELLO_REQUEST = bytearray(bytes.fromhex("aa") + bytes.fromhex("ff"))
     HELLO_RESPONSE = bytearray(bytes.fromhex("aa") + bytes.fromhex("aa"))

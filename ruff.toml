@@ -107,10 +107,10 @@ exclude = [
     "example_data",
     "examples",
     # automatically generated code
-    "empkins_sync_board_gui/components",
-    "empkins_sync_board_gui/ui",
-    "empkins_sync_board_gui/resources.py",
-    "empkins_sync_board_gui/resources_rc.py",
+    "open_sync_board_gui/components",
+    "open_sync_board_gui/ui",
+    "open_sync_board_gui/resources.py",
+    "open_sync_board_gui/resources_rc.py",
 ]
 
 [pylint]

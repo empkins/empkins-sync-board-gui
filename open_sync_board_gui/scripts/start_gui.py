@@ -4,8 +4,8 @@ import sys
 
 from PySide2.QtWidgets import QApplication
 
-from empkins_sync_board_gui.constants import BOARD_VERSION_V3
-from empkins_sync_board_gui.windows import MainWindow
+from open_sync_board_gui.constants import BOARD_VERSION_V3
+from open_sync_board_gui.windows import MainWindow
 
 
 # switch to a new board version here

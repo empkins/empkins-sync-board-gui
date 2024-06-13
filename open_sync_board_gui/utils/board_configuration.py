@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple, Union
 
-from empkins_sync_board_gui.config.hardware_config import HardwareConfig, resolve_path
-from empkins_sync_board_gui.constants import (
+from open_sync_board_gui.config.hardware_config import HardwareConfig, resolve_path
+from open_sync_board_gui.constants import (
     COMMAND_FILE_PATH,
     DEFAULT_DEGREE,
     DEFAULT_DELAY,

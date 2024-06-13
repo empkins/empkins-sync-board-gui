@@ -1,6 +1,6 @@
 """Default devices and their settings."""
 
-from empkins_sync_board_gui.constants import LOGIC_LEVEL_18, LOGIC_LEVEL_33, LOGIC_LEVEL_50
+from open_sync_board_gui.constants import LOGIC_LEVEL_18, LOGIC_LEVEL_33, LOGIC_LEVEL_50
 
 DEFAULT_DEVICES = [
     "EmpkinS",

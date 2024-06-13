@@ -3,9 +3,9 @@
 
 from PySide2.QtWidgets import QDialog, QWidget
 
-from empkins_sync_board_gui.components.source_config_dialog import Ui_SourceConfigDialog
-from empkins_sync_board_gui.constants import DEFAULT_SYNC_SIGNAL, SYNC_SIGNAL_MAPPING_SOURCE
-from empkins_sync_board_gui.utils.board_configuration import Source
+from open_sync_board_gui.components.source_config_dialog import Ui_SourceConfigDialog
+from open_sync_board_gui.constants import DEFAULT_SYNC_SIGNAL, SYNC_SIGNAL_MAPPING_SOURCE
+from open_sync_board_gui.utils.board_configuration import Source
 
 
 class SourceConfigDialog(QDialog):

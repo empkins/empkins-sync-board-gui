@@ -4,8 +4,8 @@ from pathlib import Path
 
 from PySide2.QtWidgets import QCompleter, QDialog, QDirModel, QFileDialog, QWidget
 
-from empkins_sync_board_gui.components import Ui_EventLogDialog
-from empkins_sync_board_gui.constants import EVENT_LOG_FILE_TYPE, EVENT_LOG_HEADER
+from open_sync_board_gui.components import Ui_EventLogDialog
+from open_sync_board_gui.constants import EVENT_LOG_FILE_TYPE, EVENT_LOG_HEADER
 
 
 class EventLogDialog(QDialog):

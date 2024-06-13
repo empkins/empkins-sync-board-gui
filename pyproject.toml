@@ -44,7 +44,7 @@ exclude = '''
     | build
     | dist
     | \.virtual_documents
-    | empkins_sync_board_gui/constants
+    | open_sync_board_gui/constants
   )/
 )
 '''
@@ -59,8 +59,8 @@ _isort_check = "isort **/*.py --check-only"
 _format_black = "black ."
 _format_ruff = "ruff . --fix-only"
 format = { sequence = ["_format_black", "_format_ruff"], help = "Format all files." }
-lint = { cmd = "ruff empkins_sync_board_gui --fix", help = "Lint all files with ruff." }
-_lint_ci = "ruff empkins_sync_board_gui --format=github"
+lint = { cmd = "ruff open_sync_board_gui --fix", help = "Lint all files with ruff." }
+_lint_ci = "ruff open_sync_board_gui --format=github"
 _check_black = "black . --check"
 ci_check = { sequence = ["_check_black", "_lint_ci"], help = "Check all potential format and linting issues." }
 update_version = { script = "_tasks:task_update_version()" }
@@ -70,4 +70,4 @@ update_ui = "./scripts/compile_ui_files.sh"
 
 
 [tool.poetry.scripts]
-run-sync-board = 'empkins_sync_board_gui.scripts.start_gui:run'
+run-sync-board = 'open_sync_board_gui.scripts.start_gui:run'

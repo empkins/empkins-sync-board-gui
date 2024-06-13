@@ -17,9 +17,9 @@ from PySide2.QtWidgets import (
     QWidget,
 )
 
-from empkins_sync_board_gui.components import Ui_MainWindowV3
-from empkins_sync_board_gui.config.hardware_config import HardwareConfig, resolve_path
-from empkins_sync_board_gui.constants import (
+from open_sync_board_gui.components import Ui_MainWindowV3
+from open_sync_board_gui.config.hardware_config import HardwareConfig, resolve_path
+from open_sync_board_gui.constants import (
     ACTIVE_CONNECTION_COLOR,
     BLACK_FONT_COLOR,
     BOARD_VERSION_V3,
@@ -39,15 +39,15 @@ from empkins_sync_board_gui.constants import (
     START_SOURCE,
     STOP_MODE,
 )
-from empkins_sync_board_gui.dialogs import (
+from open_sync_board_gui.dialogs import (
     ConfigImportDialog,
     InputConnectionConfigDialog,
     OutputConnectionConfigDialog,
     SourceConfigDialog,
 )
-from empkins_sync_board_gui.dialogs.connection_config_dialog import InputOutputConnectionConfigDialog
-from empkins_sync_board_gui.dialogs.event_location_dialog import EventLogDialog
-from empkins_sync_board_gui.utils import BoardConfig, BoardConnectionError, BoardConnector
+from open_sync_board_gui.dialogs.connection_config_dialog import InputOutputConnectionConfigDialog
+from open_sync_board_gui.dialogs.event_location_dialog import EventLogDialog
+from open_sync_board_gui.utils import BoardConfig, BoardConnectionError, BoardConnector
 
 
 class MainWindow(QWidget):

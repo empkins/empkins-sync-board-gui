@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ui_source=./empkins_sync_board_gui/ui/
-ui_dest=./empkins_sync_board_gui/components/
-rc_dest=./empkins_sync_board_gui/
+ui_source=./open_sync_board_gui/ui/
+ui_dest=./open_sync_board_gui/components/
+rc_dest=./open_sync_board_gui/
 
 for f in $(find $ui_source -name *.ui)
 do

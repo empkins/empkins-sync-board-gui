@@ -1,6 +1,6 @@
-# Contributing to Empkins Sync Board GUI 
+# Contributing to Open Sync Board GUI 
 
-This document contains information for developers that want to contribute to ``empkins-sync-board-gui``.
+This document contains information for developers that want to contribute to ``open-sync-board-gui``.
 
 It includes further in-depth information on how to set up and use required tools
 and learn about programing methods used in the development of this project.
@@ -10,7 +10,7 @@ and learn about programing methods used in the development of this project.
 
 ### General Information
 
-`empkins-sync-board-gui` is under active development and welcomes everyone to contribute to code improvements, documentation, 
+`open-sync-board-gui` is under active development and welcomes everyone to contribute to code improvements, documentation, 
 testing, and new features! [Why should I contribute?](https://github.com/jonschlinkert/idiomatic-contributing/)
 
 Before adding new features, please think about on where your features might suit best into the project structure 
@@ -21,12 +21,12 @@ tests (more on that below) to your code.
 
 ### Git Workflow
 
-As multiple people are expected to contribute to `empkins-sync-board-gui` at the same time, `empkins-sync-board-gui` implements a proper 
+As multiple people are expected to contribute to `open-sync-board-gui` at the same time, `open-sync-board-gui` implements a proper 
 [Git workflow](https://guides.github.com/introduction/flow/) to prevent possible issues.
 
 #### Branching structure
 
-In `empkins-sync-board-gui` we use a *main + feature branches* structure.
+In `open-sync-board-gui` we use a *main + feature branches* structure.
 This workflow is well explained [here](https://www.atlassian.com/blog/git/simple-git-workflow-is-simple).
   
 All changes to the `main` branch should be performed using feature branches.
@@ -66,11 +66,11 @@ As a reminder, feature branches...
 
 ##### Pushing Code
 
-As soon as your new contribution to `empkins-sync-board-gui` is ready, it's time to ensure your code passes all necessary checks, 
+As soon as your new contribution to `open-sync-board-gui` is ready, it's time to ensure your code passes all necessary checks, 
 such as formatting, linting, building documentation, and performing tests. To run these checks more easily this project 
 uses [poethepoet](https://github.com/nat-n/poethepoet), a task runner that runs well with poetry and that provides 
 a cross-platform CLI for common tasks. More details on that are explained in a 
-[later Section](#Tools-used-in-empkins-sync-board-gui).
+[later Section](#Tools-used-in-open-sync-board-gui).
 
 
 ##### Ask to Merge Pull Request
@@ -136,13 +136,13 @@ It will act as a `develop` branch for just this feature.
 
 ### Project Setup and Poetry
 
-`empkins-sync-board-gui` only supports Python 3.8 and newer. First, install a compatible version of Python.
+`open-sync-board-gui` only supports Python 3.8 and newer. First, install a compatible version of Python.
 If you do not want to modify your system installation of Python you can use [conda](https://docs.conda.io/en/latest/)
 or [pyenv](https://github.com/pyenv/pyenv).
 However, there are some issues with using conda.
 Please, check the [trouble shooting guide](#Troubleshooting) below.
 
-`empkins-sync-board-gui` uses [poetry](https://python-poetry.org) to manage its dependencies.
+`open-sync-board-gui` uses [poetry](https://python-poetry.org) to manage its dependencies.
 Once you installed poetry, run the following commands to initialize a virtual env and install all development
 dependencies:
 
@@ -180,7 +180,7 @@ poetry update
 Running `poetry install` will only install packages that are not yet installed. `poetry update` will also check if 
 newer versions of already installed packages exist.
 
-### Tools used in empkins-sync-board-gui
+### Tools used in open-sync-board-gui
 
 To make it easier to run command-line tasks this project uses [poethepoet](https://github.com/nat-n/poethepoet) to 
 provide a cross-platform CLI for common tasks.
@@ -255,7 +255,7 @@ You can instruct Pycharm to automatically reload modules upon changing by adding
 
 ### Release Model
 
-`empkins-sync-board-gui` follows typically semantic versioning: A.B.C (e.g. 1.3.5)
+`open-sync-board-gui` follows typically semantic versioning: A.B.C (e.g. 1.3.5)
 
 - `A` is the major version, which will be updated once there were fundamental changes to the project
 - `B` is the minor version, which will be updated whenever new features are added

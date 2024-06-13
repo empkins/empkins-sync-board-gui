@@ -28,7 +28,7 @@ jobs:
         source .venv/bin/activate
         pip install pyinstaller 
         pyinstaller start_gui.spec
-        zip esb_gui_macos.zip ./dist/start_gui
+        zip osb_gui_macos.zip ./dist/start_gui
 
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1   
@@ -36,7 +36,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: /Users/runner/work/empkins-sync-board-gui/empkins-sync-board-gui/esb_gui_macos.zip
-        asset_name: esb_gui_macos.zip
+        asset_path: /Users/runner/work/empkins-sync-board-gui/empkins-sync-board-gui/osb_gui_macos.zip
+        asset_name: osb_gui_macos.zip
         asset_content_type: application/zip
         

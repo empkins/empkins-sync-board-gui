@@ -7,10 +7,10 @@ import os
 CURR_DIR = os.path.abspath(".")
 
 a = Analysis(
-    ['empkins_sync_board_gui/start_gui.py'],
+    ['open_sync_board_gui/start_gui.py'],
     pathex=[],
     binaries=[],
-    datas=[(f'{CURR_DIR}/empkins_sync_board_gui/config/*.json', 'config'), (f'{CURR_DIR}/empkins_sync_board_gui/config/*.ini', 'config')],
+    datas=[(f'{CURR_DIR}/open_sync_board_gui/config/*.json', 'config'), (f'{CURR_DIR}/open_sync_board_gui/config/*.ini', 'config')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
