@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "empkins-sync-board-gui"
+name = "open-sync-board-gui"
 version = "0.1.0"
 description = ""
 authors = [
